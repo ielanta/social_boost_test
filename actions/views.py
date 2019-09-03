@@ -1,7 +1,7 @@
 from rest_framework import generics
 
-from activity.models import Like
-from activity.serializers import LikeSerializer
+from actions.models import Like
+from actions.serializers import LikeSerializer
 
 
 class LikeList(generics.ListCreateAPIView):

@@ -1,7 +1,7 @@
 import logging
 
 from rest_framework import serializers
-from activity.models import Like
+from actions.models import Like
 
 
 class LikeSerializer(serializers.ModelSerializer):

@@ -1,5 +1,5 @@
 from django.conf.urls import url
-from activity.views import LikeList, DeleteLike
+from actions.views import LikeList, DeleteLike
 
 
 urlpatterns = [

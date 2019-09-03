@@ -3,7 +3,7 @@ from django.urls import reverse
 from rest_framework import status
 from rest_framework.test import APITestCase
 from posts.models import Post
-from activity.models import Like
+from actions.models import Like
 
 
 class LikeListTests(APITestCase):
