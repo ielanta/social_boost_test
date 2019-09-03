@@ -1,7 +1,9 @@
 from django.contrib.auth.models import User
 
 from rest_framework import serializers
+from rest_framework.validators import ValidationError
 
+from integrations.email_hunter import verify_email
 from accounts.models import Account
 
 
@@ -18,6 +20,10 @@ class UserSerializer(AccountSerializer):
     password = serializers.CharField(write_only=True, style={'input_type': 'password'})
 
     def create(self, validated_data):
+        validation = verify_email(validated_data['email'])
+        if validation.get('result') != 'deliverable':
+            raise ValidationError(validation)
+
         user = User.objects.create(email=validated_data['email'], username=validated_data['username'])
         user.set_password(validated_data['password'])
         user.save()
