@@ -28,7 +28,7 @@ class UserSerializer(AccountSerializer):
         email = validated_data['email']
         validation = verify_email(email)
         if validation.get('result') != 'deliverable':
-            logging.error(f'{email} is invalid')
+            logging.error(f'{email} is invalid. Status: {validation.get("result")}')
             raise ValidationError(validation)
         logging.info(f'{email} is valid')
         user = User.objects.create(email=email, username=validated_data['username'])
