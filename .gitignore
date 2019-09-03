@@ -1,1 +1,4 @@
 *.idea
+*.pyc
+myenv/
+social_db.sqlite3
