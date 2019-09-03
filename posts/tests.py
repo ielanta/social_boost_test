@@ -10,7 +10,7 @@ class PostListTests(APITestCase):
 
     def setUp(self):
         self.user = User.objects.create_user('user', 'Password')
-        self.data = {'user': self.user.pk, 'text': 'Test data'}
+        self.data = {'text': 'Test data'}
 
     def test_create_post_by_not_authorized(self):
         # check that not authorized user cannot create post
