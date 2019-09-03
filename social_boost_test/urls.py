@@ -10,6 +10,7 @@ API_TITLE = 'Social Boost API doc'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
+    url(r'^posts/', include('posts.urls')),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
