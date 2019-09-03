@@ -3,5 +3,5 @@ from posts.views import PostList
 
 
 urlpatterns = [
-    url(r'^$', PostList.as_view(), name='post-list'),
+    url(r'^$', PostList.as_view(), name='my-post-list'),
 ]

@@ -6,7 +6,7 @@ from posts.models import Post
 
 
 class PostListTests(APITestCase):
-    url = reverse('post-list')
+    url = reverse('my-post-list')
 
     def setUp(self):
         self.user = User.objects.create_user('user', 'Password')

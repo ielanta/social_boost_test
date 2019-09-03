@@ -10,11 +10,11 @@ API_TITLE = 'Social Boost API doc'
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^accounts/', include('accounts.urls')),
-    url(r'^posts/', include('posts.urls')),
+    url(r'^my/posts/', include('posts.urls')),
+    url(r'^my/likes/', include('activity.urls')),
     url(r'^api-auth/', include('rest_framework.urls')),
     url(r'^api-token-auth/', obtain_jwt_token),
     url(r'^api-token-refresh/', refresh_jwt_token),
-    #url(r'^services/', include('service_areas.urls')),
     url(r'^docs/', include_docs_urls(title=API_TITLE)),
     url(r'^static/(?P<path>.*)$', serve, {'document_root': settings.STATIC_ROOT}),
 ]
