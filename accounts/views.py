@@ -16,6 +16,9 @@ class AccountList(generics.ListAPIView):
 
 
 class AccountCreate(generics.CreateAPIView):
+    """
+    Create User and Account
+    """
     queryset = User.objects.all()
     permission_classes = [permissions.AllowAny]
     serializer_class = UserSerializer
