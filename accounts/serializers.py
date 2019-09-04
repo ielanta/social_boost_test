@@ -24,21 +24,27 @@ class UserSerializer(AccountSerializer):
     password = serializers.CharField(write_only=True, style={'input_type': 'password'})
 
     def create(self, validated_data):
-
         email = validated_data['email']
         validation = verify_email(email)
+
         if validation.get('result') != 'deliverable':
-            logging.error(f'{email} is invalid. Status: {validation.get("result")}')
+            if validation.get('errors'):
+                logging.error(f'Hunter.io: {validation}')
+            else:
+                logging.error(f'{email} is invalid. Status: {validation.get("result")}')
             raise ValidationError(validation)
+
         logging.info(f'{email} is valid')
         user = User.objects.create(email=email, username=validated_data['username'])
         user.set_password(validated_data['password'])
         user.save()
+
         try:
             data = get_clearbit_data(email)
         except HTTPError:
             logging.error(f'Clearbit data error for {email}')
             raise ValidationError('Invalid email')
+
         Account.objects.create(user=user, **data)
         logging.info(f'Account for {email} was created')
         return user

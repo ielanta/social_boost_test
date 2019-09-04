@@ -9,19 +9,20 @@ class LikeSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         like, is_created = Like.objects.get_or_create(**validated_data)
+
         if is_created:
             logging.info(f'Like by {validated_data["user"].username} for post #{validated_data["post"].pk}')
         return like
 
     def delete(self, validated_data):
         like = Like.objects.get(**validated_data)
+
         if not like:
             logging.error(f'Like by {validated_data["user"].username} for post #{validated_data["post"].pk} '
                           f'does not exists')
         else:
             logging.info(f'Unlike by {validated_data["user"].username} for post #{validated_data["post"].pk}')
             like.delete()
-        return
 
     class Meta:
         model = Like
