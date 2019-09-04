@@ -60,6 +60,9 @@ class UserBot:
 
     def get_token(self):
         response = requests.post(URL + '/api-token-auth/', {'username': self.username, 'password': 'Leo12345!'})
+        token = response.json().get('token')
+        if not token:
+            raise ValueError(f'Please check credentials: username({self.username}) and password')
         return 'JWT ' + response.json()['token']
 
     def make_post(self):
